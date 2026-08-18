@@ -1,4 +1,5 @@
 import "./styles/About.css";
+import { GITHUB_URL } from "../constants/contact";
 
 const About = () => {
   return (
@@ -15,7 +16,7 @@ const About = () => {
         <p className="para">
           Explore my work on{" "}
           <a
-            href="https://github.com/"
+            href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
             data-cursor="disable"

@@ -3,6 +3,8 @@ import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import resumePdf from "../assets/pdf/Anas_Sheikh_cv.pdf";
+import { GITHUB_URL, LINKEDIN_URL } from "../constants/contact";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -56,7 +58,7 @@ const SocialIcons = () => {
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
           <a
-            href="https://github.com/"
+            href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
           >
@@ -65,7 +67,7 @@ const SocialIcons = () => {
         </span>
         <span>
           <a
-            href="https://www.linkedin.com/"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noreferrer"
           >
@@ -75,7 +77,7 @@ const SocialIcons = () => {
       </div>
       <a
         className="resume-button"
-        href="/resume.pdf"
+        href={resumePdf}
         target="_blank"
         rel="noreferrer"
       >

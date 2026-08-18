@@ -55,12 +55,11 @@ const Career = () => {
                 <h4>Information Technology</h4>
                 <h5>Punjab University</h5>
               </div>
-              <h3>2020</h3>
+              <h3>2022–2026</h3>
             </div>
             <p>
-              My journey began in 2020 when I graduated with a degree in Information
-              Technology from Punjab University — the foundation for everything I
-              build today.
+              I completed my B.S. in Information Technology at Punjab University
+              (2022–2026) — the foundation for everything I build today.
             </p>
           </div>
         </div>

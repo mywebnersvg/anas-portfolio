@@ -16,8 +16,11 @@ import {
   isValidCustomTime,
   type TimeSlot,
 } from "../utils/meetingSlots";
+import { CONTACT_EMAIL, GMAIL_COMPOSE_URL } from "../constants/contact";
 import { lockPageScroll, unlockPageScroll } from "../utils/scrollLock";
 import "./styles/BookMeeting.css";
+
+const BOOKING_TEMPORARILY_DISABLED = true;
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -111,6 +114,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (BOOKING_TEMPORARILY_DISABLED) return;
     setErrorMessage("");
 
     if (!name.trim() || !email.trim() || !phone.trim()) {
@@ -226,6 +230,24 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
           </div>
         ) : (
           <>
+            {BOOKING_TEMPORARILY_DISABLED && (
+              <div className="book-meeting-maintenance-notice">
+                <p>
+                  The booking backend is currently being worked on. Please
+                  contact me on Gmail at{" "}
+                  <a
+                    href={GMAIL_COMPOSE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-cursor="disable"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
+                  .
+                </p>
+              </div>
+            )}
+
             <div className="book-meeting-header">
               <h3 id="book-meeting-title">Book a Meeting</h3>
               <p>
@@ -234,7 +256,14 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
               </p>
             </div>
 
-            <form className="book-meeting-form" onSubmit={handleSubmit}>
+            <form
+              className={`book-meeting-form${
+                BOOKING_TEMPORARILY_DISABLED
+                  ? " book-meeting-form-disabled"
+                  : ""
+              }`}
+              onSubmit={handleSubmit}
+            >
               <div className="book-meeting-grid">
                 <label className="book-meeting-field">
                   <span>
@@ -246,6 +275,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="John Doe"
                     required
+                    disabled={BOOKING_TEMPORARILY_DISABLED}
                     data-cursor="disable"
                   />
                 </label>
@@ -260,6 +290,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="john@email.com"
                     required
+                    disabled={BOOKING_TEMPORARILY_DISABLED}
                     data-cursor="disable"
                   />
                 </label>
@@ -274,6 +305,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+92 300 1234567"
                     required
+                    disabled={BOOKING_TEMPORARILY_DISABLED}
                     data-cursor="disable"
                   />
                 </label>
@@ -290,6 +322,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
                       required
+                      disabled={BOOKING_TEMPORARILY_DISABLED}
                       data-cursor="disable"
                     >
                       <option value="">Select country</option>
@@ -309,7 +342,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                       value={stateName}
                       onChange={(e) => setStateName(e.target.value)}
                       required
-                      disabled={!countryCode}
+                      disabled={BOOKING_TEMPORARILY_DISABLED || !countryCode}
                       data-cursor="disable"
                     >
                       <option value="">Select state</option>
@@ -339,6 +372,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                         type="checkbox"
                         checked={useCustomTime}
                         onChange={(e) => setUseCustomTime(e.target.checked)}
+                        disabled={BOOKING_TEMPORARILY_DISABLED}
                         data-cursor="disable"
                       />
                       Custom time
@@ -350,6 +384,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                     <select
                       value={selectedDate}
                       onChange={(e) => setSelectedDate(e.target.value)}
+                      disabled={BOOKING_TEMPORARILY_DISABLED}
                       data-cursor="disable"
                     >
                       <option value="">Select date</option>
@@ -378,6 +413,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                                 : ""
                             }`}
                             onClick={() => setSelectedSlotId(slot.id)}
+                            disabled={BOOKING_TEMPORARILY_DISABLED}
                             data-cursor="disable"
                           >
                             {new Intl.DateTimeFormat("en-US", {
@@ -400,6 +436,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
                         value={customTime}
                         onChange={(e) => setCustomTime(e.target.value)}
                         step={1800}
+                        disabled={BOOKING_TEMPORARILY_DISABLED}
                         data-cursor="disable"
                       />
                       <small>
@@ -429,7 +466,7 @@ const BookMeetingModal = ({ isOpen, onClose }: Props) => {
               <button
                 type="submit"
                 className="book-meeting-submit"
-                disabled={status === "loading"}
+                disabled={BOOKING_TEMPORARILY_DISABLED || status === "loading"}
                 data-cursor="disable"
               >
                 {status === "loading" ? "Booking..." : "Set Meeting"}

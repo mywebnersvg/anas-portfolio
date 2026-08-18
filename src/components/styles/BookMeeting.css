@@ -157,6 +157,37 @@
   line-height: 1.6;
 }
 
+.book-meeting-maintenance-notice {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.book-meeting-maintenance-notice p {
+  margin: 0;
+  color: #f3eef8;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.book-meeting-maintenance-notice a {
+  color: var(--accentColor);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.book-meeting-maintenance-notice a:hover {
+  opacity: 0.85;
+}
+
+.book-meeting-form-disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 .book-meeting-form {
   display: flex;
   flex-direction: column;

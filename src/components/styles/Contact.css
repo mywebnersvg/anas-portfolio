@@ -36,8 +36,23 @@
 }
 
 a.contact-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 25px;
   border-bottom: 1px solid #ccc;
+}
+
+.contact-link-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-link-with-icon svg,
+a.contact-social svg {
+  font-size: 0.85em;
+  flex-shrink: 0;
 }
 
 .contact-box h2 {
