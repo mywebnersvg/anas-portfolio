@@ -1,0 +1,95 @@
+/* Shared section layout — centered mx-auto, 320px → 1920px */
+.section-container {
+  width: 100%;
+  max-width: min(1300px, calc(100% - 24px));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+/* Gradient headings (Career, Portfolio, Reviews) */
+.gradient-section-title,
+.career-section h2,
+.work-section h2,
+.reviews-section h2,
+.book-meeting-section h2,
+.techstack h2 {
+  font-weight: 400;
+  text-align: center;
+  background: linear-gradient(0deg, var(--accentColor), #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gradient-section-title > span,
+.career-section h2 > span,
+.work-section h2 > span,
+.reviews-section h2 > span,
+.book-meeting-section h2 > span,
+.techstack h2 > span {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+}
+
+/* Text sections sit above fixed 3D character */
+.about-section,
+.whatIDO,
+.career-section,
+.reviews-section,
+.work-section,
+.book-meeting-section,
+.contact-section,
+.techstack {
+  position: relative;
+  z-index: 20;
+  isolation: isolate;
+}
+
+.title,
+.para {
+  font-kerning: none;
+  -webkit-text-rendering: optimizeSpeed;
+  text-rendering: optimizeSpeed;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@media only screen and (min-width: 375px) {
+  .section-container {
+    max-width: min(1300px, calc(100% - 32px));
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .section-container {
+    max-width: min(1200px, calc(100% - 80px));
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .section-container {
+    max-width: min(1300px, calc(100% - 120px));
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .section-container {
+    max-width: 1300px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .section-container {
+    max-width: 1400px;
+  }
+}
